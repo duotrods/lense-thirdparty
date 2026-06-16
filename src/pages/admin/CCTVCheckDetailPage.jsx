@@ -187,39 +187,11 @@ const CCTVCheckDetailPage = () => {
             </div>
           )}
 
-          {/* A417 Section */}
+          {/* A66-WJ Section */}
           {renderCameraSection(
-            'A417 - Missing Link Cameras',
-            report.a417Cameras,
-            report.a417Comments
-          )}
-
-          {/* A11/A47 Kier/Core Section */}
-          {renderCameraSection(
-            'A11/A47 Kier/Core Cameras',
-            report.kierCore,
-            report.kierCoreComments
-          )}
-
-          {/* M3 Jct 9 Section */}
-          {renderCameraSection(
-            'M3 Jct 9 - Balfour Beatty Cameras',
-            report.m3Jct9,
-            report.m3Jct9Comments
-          )}
-
-          {/* A452 HS2 Section */}
-          {renderCameraSection(
-            'A452 HS2 Cameras',
-            report.A452,
-            report.A452Comments
-          )}
-
-          {/* Costain - GC Section */}
-          {renderCameraSection(
-            'Costain - GC Cameras',
-            report.Costain,
-            report.CostainComments
+            'A66-WJ Cameras',
+            report.a66Cameras,
+            report.a66Comments
           )}
 
           {/* Overall Summary */}
@@ -228,22 +200,14 @@ const CCTVCheckDetailPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {(() => {
                 const allWorkingValues = ['ALL WORKING CORRECT', 'allWorking', 'All Working Correctly', 'All Working'];
-                const a417AllWorking = report.a417Cameras?.some(c => allWorkingValues.includes(c));
-                const kierCoreAllWorking = report.kierCore?.some(c => allWorkingValues.includes(c));
-                const m3Jct9AllWorking = report.m3Jct9?.some(c => allWorkingValues.includes(c));
-                const a452AllWorking = report.A452?.some(c => allWorkingValues.includes(c));
-                const costainAllWorking = report.Costain?.some(c => allWorkingValues.includes(c));
-                const a417Issues = report.a417Cameras?.filter(c => !allWorkingValues.includes(c)).length || 0;
-                const kierCoreIssues = report.kierCore?.filter(c => !allWorkingValues.includes(c)).length || 0;
-                const m3Jct9Issues = report.m3Jct9?.filter(c => !allWorkingValues.includes(c)).length || 0;
-                const a452Issues = report.A452?.filter(c => !allWorkingValues.includes(c)).length || 0;
-                const costainIssues = report.Costain?.filter(c => !allWorkingValues.includes(c)).length || 0;
+                const a66AllWorking = report.a66Cameras?.some(c => allWorkingValues.includes(c));
+                const a66Issues = report.a66Cameras?.filter(c => !allWorkingValues.includes(c)).length || 0;
 
                 return (
                   <>
                     <div className="bg-purple-50 rounded-lg p-4">
-                      <p className="text-sm text-purple-600 font-semibold uppercase mb-2">A417 Status</p>
-                      {a417AllWorking ? (
+                      <p className="text-sm text-purple-600 font-semibold uppercase mb-2">A66-WJ Status</p>
+                      {a66AllWorking ? (
                         <div className="flex items-center gap-2 text-green-600">
                           <Check className="w-5 h-5" />
                           <span className="font-medium">All Working</span>
@@ -251,37 +215,7 @@ const CCTVCheckDetailPage = () => {
                       ) : (
                         <div className="flex items-center gap-2 text-red-600">
                           <X className="w-5 h-5" />
-                          <span className="font-medium">{a417Issues} Issues</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="bg-blue-50 rounded-lg p-4">
-                      <p className="text-sm text-blue-600 font-semibold uppercase mb-2">A11/A47 Status</p>
-                      {kierCoreAllWorking ? (
-                        <div className="flex items-center gap-2 text-green-600">
-                          <Check className="w-5 h-5" />
-                          <span className="font-medium">All Working</span>
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2 text-red-600">
-                          <X className="w-5 h-5" />
-                          <span className="font-medium">{kierCoreIssues} Issues</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="bg-teal-50 rounded-lg p-4">
-                      <p className="text-sm text-teal-600 font-semibold uppercase mb-2">M3 Jct 9 Status</p>
-                      {m3Jct9AllWorking ? (
-                        <div className="flex items-center gap-2 text-green-600">
-                          <Check className="w-5 h-5" />
-                          <span className="font-medium">All Working</span>
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2 text-red-600">
-                          <X className="w-5 h-5" />
-                          <span className="font-medium">{m3Jct9Issues} Issues</span>
+                          <span className="font-medium">{a66Issues} Issues</span>
                         </div>
                       )}
                     </div>

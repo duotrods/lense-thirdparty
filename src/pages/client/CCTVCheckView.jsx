@@ -316,72 +316,15 @@ const CCTVCheckView = () => {
 
               // Show only the section matching the current active scheme
               if (
-                currentSchemeId === "A417" &&
-                form.schemeIds?.includes("A417")
+                currentSchemeId === "A66-WJ" &&
+                form.schemeIds?.includes("A66-WJ")
               ) {
                 return renderCameraSection(
-                  "A417",
-                  form.a417Cameras,
-                  form.a417Comments,
-                  form.a417Blackspot,
-                  form.a417TssInformed,
-                );
-              } else if (
-                currentSchemeId === "A47" &&
-                form.schemeIds?.includes("A47")
-              ) {
-                return renderCameraSection(
-                  "A11/A47 Kier/Core",
-                  form.kierCore,
-                  form.kierCoreComments,
-                  form.kierCoreBlackspot,
-                  form.kierCoreTssInformed,
-                );
-              } else if (
-                currentSchemeId === "M3" &&
-                form.schemeIds?.includes("M3")
-              ) {
-                return renderCameraSection(
-                  "M3 Jct 9",
-                  form.m3Jct9,
-                  form.m3Jct9Comments,
-                  form.m3Jct9Blackspot,
-                  form.m3TssInformed,
-                );
-              }
-              else if (
-                currentSchemeId === "Gallows" &&
-                form.schemeIds?.includes("Gallows")
-              ) {
-                return renderCameraSection(
-                  "Gallows Corner - Costain",
-                  form.Costain,
-                  form.CostainComments,
-                  form.CostainBlackspot,
-                  form.CostainTssInformed,
-                );
-              }
-              else if (
-                currentSchemeId === "A452" &&
-                form.schemeIds?.includes("A452")
-              ) {
-                return renderCameraSection(
-                  "A452 HS2",
-                  form.A452,
-                  form.A452Comments,
-                  form.A452Blackspot,
-                  form.A452TssInformed,
-                );
-              } else if (
-                currentSchemeId === "SimisterIsland" &&
-                form.schemeIds?.includes("SimisterIsland")
-              ) {
-                return renderCameraSection(
-                  "Simister Island - Costain",
-                  form.csi,
-                  form.csiComments,
-                  form.csiBlackspot,
-                  form.csiTssInformed,
+                  "A66-WJ",
+                  form.a66Cameras,
+                  form.a66Comments,
+                  form.a66Blackspot,
+                  form.a66TssInformed,
                 );
               }
 

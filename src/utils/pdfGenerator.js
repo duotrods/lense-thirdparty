@@ -426,10 +426,10 @@ export const generateReportPDF = async (
         addField("Checked By", report.firstName);
       }
 
-      // A417 Section - only show if no filter OR filter matches A417
+      // A66-WJ Section - only show if no filter OR filter matches A66-WJ
       if (
-        (!filterSchemeId || filterSchemeId === "A417") &&
-        ((report.a417Cameras && report.a417Cameras.length > 0) || (report.a417Comments && report.a417Comments.trim() !== ""))
+        (!filterSchemeId || filterSchemeId === "A66-WJ") &&
+        ((report.a66Cameras && report.a66Cameras.length > 0) || (report.a66Comments && report.a66Comments.trim() !== ""))
       ) {
         yPosition += 3;
         doc.setFillColor(245, 245, 245);
@@ -437,11 +437,11 @@ export const generateReportPDF = async (
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(11);
         doc.setFont("helvetica", "bold");
-        doc.text("A417", margin + 3, yPosition + 3);
+        doc.text("A66-WJ", margin + 3, yPosition + 3);
         yPosition += 12;
 
-        if (report.a417Cameras && report.a417Cameras.length > 0) {
-          const isNone = report.a417Cameras.includes("NONE");
+        if (report.a66Cameras && report.a66Cameras.length > 0) {
+          const isNone = report.a66Cameras.includes("NONE");
           if (isNone) {
             addField(
               "CCTV Status",
@@ -451,205 +451,19 @@ export const generateReportPDF = async (
           } else {
             addField(
               "CCTV Issues Reported",
-              report.a417Cameras.join(", "),
+              report.a66Cameras.join(", "),
               true,
             );
           }
         }
         {
-          const blackspot = report.a417Blackspot;
+          const blackspot = report.a66Blackspot;
           const blackspotYes = blackspot === true || (Array.isArray(blackspot) && blackspot.length > 0 && blackspot[0] !== "All Working Correctly");
           addField("Blackspot Cameras", blackspotYes ? "Yes" : "No");
-          addField("TSS Informed", report.a417TssInformed ? "Yes" : "No");
+          addField("TSS Informed", report.a66TssInformed ? "Yes" : "No");
         }
-        if (report.a417Comments && report.a417Comments.trim() !== "") {
-          addField("Comments", report.a417Comments);
-        }
-        yPosition += 3;
-      }
-
-      // A11/A47 Kier/Core Section - only show if no filter OR filter matches A47
-      if (
-        (!filterSchemeId || filterSchemeId === "A47") &&
-        ((report.kierCore && report.kierCore.length > 0) || (report.kierCoreComments && report.kierCoreComments.trim() !== ""))
-      ) {
-        yPosition += 3;
-        doc.setFillColor(245, 245, 245);
-        doc.rect(margin, yPosition - 3, contentWidth, 10, "F");
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(11);
-        doc.setFont("helvetica", "bold");
-        doc.text("A11/A47 Kier/Core", margin + 3, yPosition + 3);
-        yPosition += 12;
-
-        if (report.kierCore && report.kierCore.length > 0) {
-          const isNone = report.kierCore.includes("NONE");
-          if (isNone) {
-            addField(
-              "CCTV Status",
-              "NONE - All cameras working correctly",
-              true,
-            );
-          } else {
-            addField("CCTV Issues Reported", report.kierCore.join(", "), true);
-          }
-        }
-        {
-          const blackspot = report.kierCoreBlackspot;
-          const blackspotYes = blackspot === true || (Array.isArray(blackspot) && blackspot.length > 0 && blackspot[0] !== "All Working Correctly");
-          addField("Blackspot Cameras", blackspotYes ? "Yes" : "No");
-          addField("TSS Informed", report.kierCoreTssInformed ? "Yes" : "No");
-        }
-        if (report.kierCoreComments && report.kierCoreComments.trim() !== "") {
-          addField("Comments", report.kierCoreComments);
-        }
-        yPosition += 3;
-      }
-
-      // M3 Jct 9 Section - only show if no filter OR filter matches M3
-      if (
-        (!filterSchemeId || filterSchemeId === "M3") &&
-        ((report.m3Jct9 && report.m3Jct9.length > 0) || (report.m3Jct9Comments && report.m3Jct9Comments.trim() !== ""))
-      ) {
-        yPosition += 3;
-        doc.setFillColor(245, 245, 245);
-        doc.rect(margin, yPosition - 3, contentWidth, 10, "F");
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(11);
-        doc.setFont("helvetica", "bold");
-        doc.text("M3 Jct 9", margin + 3, yPosition + 3);
-        yPosition += 12;
-
-        if (report.m3Jct9 && report.m3Jct9.length > 0) {
-          const isNone = report.m3Jct9.includes("NONE");
-          if (isNone) {
-            addField(
-              "CCTV Status",
-              "NONE - All cameras working correctly",
-              true,
-            );
-          } else {
-            addField("CCTV Issues Reported", report.m3Jct9.join(", "), true);
-          }
-        }
-        {
-          const blackspot = report.m3Jct9Blackspot;
-          const blackspotYes = blackspot === true || (Array.isArray(blackspot) && blackspot.length > 0 && blackspot[0] !== "All Working Correctly");
-          addField("Blackspot Cameras", blackspotYes ? "Yes" : "No");
-          addField("TSS Informed", report.m3TssInformed ? "Yes" : "No");
-        }
-        if (report.m3Jct9Comments && report.m3Jct9Comments.trim() !== "") {
-          addField("Comments", report.m3Jct9Comments);
-        }
-        yPosition += 3;
-      }
-
-      // A452 HS2 Section - only show if no filter OR filter matches A452
-      if (
-        (!filterSchemeId || filterSchemeId === "A452") &&
-        ((report.A452 && report.A452.length > 0) || (report.A452Comments && report.A452Comments.trim() !== ""))
-      ) {
-        yPosition += 3;
-        doc.setFillColor(245, 245, 245);
-        doc.rect(margin, yPosition - 3, contentWidth, 10, "F");
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(11);
-        doc.setFont("helvetica", "bold");
-        doc.text("A452 HS2", margin + 3, yPosition + 3);
-        yPosition += 12;
-
-        if (report.A452 && report.A452.length > 0) {
-          const isNone = report.A452.includes("NONE");
-          if (isNone) {
-            addField(
-              "CCTV Status",
-              "NONE - All cameras working correctly",
-              true,
-            );
-          } else {
-            addField("CCTV Issues Reported", report.A452.join(", "), true);
-          }
-        }
-        {
-          const blackspot = report.A452Blackspot;
-          const blackspotYes = blackspot === true || (Array.isArray(blackspot) && blackspot.length > 0 && blackspot[0] !== "All Working Correctly");
-          addField("Blackspot Cameras", blackspotYes ? "Yes" : "No");
-          addField("TSS Informed", report.A452TssInformed ? "Yes" : "No");
-        }
-        if (report.A452Comments && report.A452Comments.trim() !== "") {
-          addField("Comments", report.A452Comments);
-        }
-        yPosition += 3;
-      }
-
-      // Costain - GC Section - only show if no filter OR filter matches Costain
-      if (
-        (!filterSchemeId || filterSchemeId === "Costain") &&
-        (report.Costain || report.CostainComments)
-      ) {
-        yPosition += 3;
-        doc.setFillColor(245, 245, 245);
-        doc.rect(margin, yPosition - 3, contentWidth, 10, "F");
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(11);
-        doc.setFont("helvetica", "bold");
-        doc.text("Costain - GC", margin + 3, yPosition + 3);
-        yPosition += 12;
-
-        if (report.Costain && report.Costain.length > 0) {
-          const isNone = report.Costain.includes("NONE");
-          if (isNone) {
-            addField(
-              "CCTV Status",
-              "NONE - All cameras working correctly",
-              true,
-            );
-          } else {
-            addField("CCTV Issues Reported", report.Costain.join(", "), true);
-          }
-        }
-        {
-          const blackspot = report.CostainBlackspot;
-          const blackspotYes = blackspot === true || (Array.isArray(blackspot) && blackspot.length > 0 && blackspot[0] !== "All Working Correctly");
-          addField("Blackspot Cameras", blackspotYes ? "Yes" : "No");
-          addField("TSS Informed", report.CostainTssInformed ? "Yes" : "No");
-        }
-        if (report.CostainComments && report.CostainComments.trim() !== "") {
-          addField("Comments", report.CostainComments);
-        }
-        yPosition += 3;
-      }
-
-      // Simister Island - Costain Section - only show if no filter OR filter matches SimisterIsland
-      if (
-        (!filterSchemeId || filterSchemeId === "SimisterIsland") &&
-        ((report.csi && report.csi.length > 0) || (report.csiComments && report.csiComments.trim() !== ""))
-      ) {
-        yPosition += 3;
-        doc.setFillColor(245, 245, 245);
-        doc.rect(margin, yPosition - 3, contentWidth, 10, "F");
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(11);
-        doc.setFont("helvetica", "bold");
-        doc.text("Simister Island - Costain", margin + 3, yPosition + 3);
-        yPosition += 12;
-
-        if (report.csi && report.csi.length > 0) {
-          const isNone = report.csi.includes("NONE");
-          if (isNone) {
-            addField("CCTV Status", "NONE - All cameras working correctly", true);
-          } else {
-            addField("CCTV Issues Reported", report.csi.join(", "), true);
-          }
-        }
-        {
-          const blackspot = report.csiBlackspot;
-          const blackspotYes = blackspot === true || (Array.isArray(blackspot) && blackspot.length > 0 && blackspot[0] !== "All Working Correctly");
-          addField("Blackspot Cameras", blackspotYes ? "Yes" : "No");
-          addField("TSS Informed", report.csiTssInformed ? "Yes" : "No");
-        }
-        if (report.csiComments && report.csiComments.trim() !== "") {
-          addField("Comments", report.csiComments);
+        if (report.a66Comments && report.a66Comments.trim() !== "") {
+          addField("Comments", report.a66Comments);
         }
         yPosition += 3;
       }
